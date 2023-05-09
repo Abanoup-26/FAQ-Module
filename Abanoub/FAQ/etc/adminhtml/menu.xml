@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+	<menu>
+		<add id="Abanoub_FAQ::menu"
+             title="Fresh FAQ"
+             translate="title"
+             module="Abanoub_FAQ"
+             sortOrder="60"
+             resource="Abanoub_FAQ::menu" />
+
+		<!-- START: sub menu -->
+		<add id="Abanoub_FAQ::submenu_Faq"
+             title="Frequently Asked Questions"
+             translate="title"
+             module="Abanoub_FAQ"
+             sortOrder="20"
+             parent="Abanoub_FAQ::menu"
+             action="faq/create/index"
+             resource="Abanoub_FAQ::submenu_Faq" />
+		<!-- END: end sub menu -->
+	</menu>
+</config>
+<!-- this is the menu/submenu in adminpanel configration -->

@@ -1,0 +1,44 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="../../../../../lib/internal/Magento/Framework/ObjectManager/etc/config.xsd">
+	<preference for="Abanoub\FAQ\Api\Data\FaqInterface" type="Abanoub\FAQ\Model\Faq" />
+	<!-- start prefrence for model & resourcemodel (Declaration) -->
+    <!--<preference for="Abanoub\FAQ\Model\ResourceModel\Faq" type="Abanoub\FAQ\Model\ResourceModel\Faq" />
+	<preference for="Abanoub\FAQ\Model\Faq" type="Abanoub\FAQ\Model\Faq" /> -->
+	<!-- end prefrence for model & resourcemodel (Declaration) -->
+
+    <!-- inject FaqsGridDataProvider  -->
+	<virtualType name="FaqsGridDataProvider" type="Magento\Framework\View\Element\UiComponent\DataProvider\DataProvider">
+		<arguments>
+			<argument name="collection" xsi:type="object" shared="false">
+				Abanoub\FAQ\Model\ResourceModel\Faq\FaqCollection
+			</argument>
+			<argument name="filterPool" xsi:type="object" shared="false">
+				FaqsGirdFilterPool
+			</argument>
+		</arguments>
+	</virtualType>
+	<!-- dataProvider for Collection of  a FAQ -->
+	<type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+		<arguments>
+			<argument name="collections" xsi:type="array">
+				<item name="abanoub_faq_create_listing_data_source" xsi:type="string">
+					Abanoub\FAQ\Model\ResourceModel\Faq\FaqCollection
+				</item>
+			</argument>
+		</arguments>
+	</type>
+
+<!-- inject the MainTable as Fresh_FAQ  -->
+	<virtualType name="Abanoub\FAQ\Model\ResourceModel\Faq\FaqCollection" type="Magento\Framework\View\Element\UiComponent\DataProvider\SearchResult">
+		<arguments>
+			<argument name="mainTable" xsi:type="string">
+				Fresh_FAQ
+			</argument>
+            <!-- inject the resourceModel of Faq -->
+			<argument name="resourceModel" xsi:type="string">
+				Abanoub\FAQ\Model\ResourceModel\Faq
+			</argument>
+		</arguments>
+	</virtualType>
+</config>
+	<!-- This file will inject the Faq collection class, table and resourceModel for the table. This source will be called in the layout file to get data for grid. -->

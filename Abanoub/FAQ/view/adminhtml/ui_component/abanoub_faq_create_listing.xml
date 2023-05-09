@@ -1,0 +1,164 @@
+<listing xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">
+				abanoub_faq_create_listing.abanoub_faq_create_listing_data_source
+            </item>
+            <item name="deps" xsi:type="string">
+				abanoub_faq_create_listing.abanoub_faq_create_listing_data_source
+            </item>
+        </item>
+        <item name="spinner" xsi:type="string">
+			faq_columns
+        </item>
+        <item name="buttons" xsi:type="array">
+            <item name="add" xsi:type="array">
+                <item name="name" xsi:type="string">
+					add
+                </item>
+                <item name="label" xsi:type="string" translate="true">
+					Add New FAQ
+                </item>
+                <item name="class" xsi:type="string">
+					primary
+                </item>
+                <item name="url" xsi:type="string">
+					*/*/newfaq
+                </item>
+            </item>
+        </item>
+    </argument>
+    <!-- declare datasource -->
+    <dataSource name="abanoub_faq_create_listing_data_source">
+        <argument name="dataProvider" xsi:type="configurableObject">
+            <argument name="class" xsi:type="string">
+				FaqsGridDataProvider
+            </argument>
+            <argument name="name" xsi:type="string">
+				abanoub_faq_create_listing_data_source
+            </argument>
+            <argument name="primaryFieldName" xsi:type="string">
+				Id
+            </argument>
+            <argument name="requestFieldName" xsi:type="string">
+				id
+            </argument>
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="component" xsi:type="string">
+						Magento_Ui/js/grid/provider
+                    </item>
+                    <item name="update_url" xsi:type="url" path="mui/index/render" />
+                    <item name="storageConfig" xsi:type="array">
+                        <item name="indexField" xsi:type="string">
+							Id
+                        </item>
+                    </item>
+                </item>
+            </argument>
+        </argument>
+    </dataSource>
+    <!-- end DataSource -->
+    <!-- Start Columns  -->
+    <columns name="faq_columns">
+        <!-- start Editor -->
+        <settings>
+            <editorConfig>
+                <param name="selectProvider" xsi:type="string">abanoub_faq_create_listing.abanoub_faq_create_listing.faq_columns.ids</param>
+                <param name="enabled" xsi:type="boolean">true</param>
+                <param name="indexField" xsi:type="string">Id</param>
+                <param name="clientConfig" xsi:type="array">
+                    <item name="saveUrl" path="faq/create/inlineEdit" xsi:type="url"/>
+                    <item name="validateBeforeSave" xsi:type="boolean">false</item>
+                </param>
+            </editorConfig>
+            <childDefaults>
+                <param name="fieldAction" xsi:type="array">
+                    <item name="provider" xsi:type="string">abanoub_faq_create_listing.abanoub_faq_create_listing.faq_columns_editor</item>
+                    <item name="target" xsi:type="string">startEdit</item>
+                    <item name="params" xsi:type="array">
+                        <item name="0" xsi:type="string">${ $.$data.rowIndex }</item>
+                        <item name="1" xsi:type="boolean">true</item>
+                    </item>
+                </param>
+            </childDefaults>
+        </settings>
+        <!-- end editor  -->
+        <selectionsColumn name="ids">
+            <settings>
+                <indexField>Id</indexField>
+            </settings>
+        </selectionsColumn>
+        <!-- Id -->
+        <column name="Id">
+            <settings>
+                <label translate="true">Id</label>
+            </settings>
+        </column>
+        <!-- Question -->
+        <column name="Question">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <!-- <item name="editor" xsi:type="array">
+                        <item name="editorType" xsi:type="string">text</item>
+                        <item name="validation" xsi:type="array">
+                            <item name="required-entry" xsi:type="boolean">true</item>
+                        </item>
+                    </item> -->
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Question</item>
+                    <item name="sortOrder" xsi:type="number">2</item>
+                </item>
+            </argument>
+        </column>
+        <!-- Answer -->
+        <column name="Answer">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <!-- <item name="editor" xsi:type="array">
+                        <item name="editorType" xsi:type="string">text</item>
+                        <item name="validation" xsi:type="array">
+                            <item name="required-entry" xsi:type="boolean">true</item>
+                        </item>
+                    </item> -->
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Answer</item>
+                    <item name="sortOrder" xsi:type="number">3</item>
+                </item>
+            </argument>
+        </column>
+        <!-- priority -->
+        <column name="Priority">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="editor" xsi:type="array">
+                        <item name="editorType" xsi:type="string">text</item>
+                        <item name="validation" xsi:type="array">
+                            <item name="required-entry" xsi:type="boolean">true</item>
+                        </item>
+                    </item>
+                    <item name="filter" xsi:type="string">text</item>
+                    <item name="label" xsi:type="string" translate="true">Priority</item>
+                    <item name="sortOrder" xsi:type="number">4</item>
+                </item>
+            </argument>
+        </column>
+        <!-- end -->
+        <!-- Actions with Ui-->
+        <actionsColumn name="actions" class="Abanoub\FAQ\Ui\Component\Listing\Column\FaqActions">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="resizeEnabled" xsi:type="boolean">
+						false
+                    </item>
+                    <item name="resizeDefaultWidth" xsi:type="string">
+						107
+                    </item>
+                    <item name="indexField" xsi:type="string">
+						Id
+                    </item>
+                </item>
+            </argument>
+        </actionsColumn>
+    </columns>
+</listing>

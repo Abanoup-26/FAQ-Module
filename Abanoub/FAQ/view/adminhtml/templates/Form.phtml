@@ -1,0 +1,25 @@
+<?php
+
+/** @var Abanoub\FAQ\Block\adminhtml\Faqadmin $block  */
+
+$url = $block->getFormAction();
+?>
+<form action="<?php echo $url; ?>" method="post" style="display: flex;flex-direction:column;align-items:center;flex:1;">
+    <input type="hidden" name="form_key" value="<?php echo $block->getFormKey(); ?>">
+    <div class="field">
+        <label class=" label" style="font-size:20px;font-weight: 900; color:blue;margin-bottom:15px; "
+                for="Question">Enter Your Question</label>
+        <div class="control" ;">
+            <input type="text" style="width: 300px;height: 30px;" name="Question" id="Question" class="input-text" required>
+        </div>
+    </div>
+    <div class="field">
+        <label class="label" style="font-size:20px;font-weight: 900; color:blue;margin-bottom:50px; " for="Answer">Answer</label>
+        <div class="control">
+            <textarea name="Answer" id="Answer" class="input-text" required style="width:300px;height:30px;"></textarea>
+        </div>
+    </div>
+    <div class="actions">
+        <button type="submit" class="button primary" style="margin-top:20px;height:50px; ">Submit</button>
+    </div>
+</form>

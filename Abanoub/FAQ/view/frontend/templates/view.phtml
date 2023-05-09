@@ -1,0 +1,13 @@
+<?php
+
+/** @var Abanoub\FAQ\Block\Faq $block */
+
+?>
+<?php $FaqCollection = $block->getTableData(); ?>
+<h1><?php echo 'Frequently Asked Questions'; ?></h1>
+<ul>
+    <?php foreach ($FaqCollection as $item) : ?>
+        <li style="font-size: large; font-weight:bold"><?php print_r($item['Question']); ?></li>
+        <li style="list-style: none; color:brown"><?php print_r($item['Answer']); ?></li>
+    <?php endforeach; ?>
+</ul>
